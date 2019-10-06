@@ -22,6 +22,8 @@ def fabrics_submit():
     """Submit a new fabric."""
     fabric ={
         'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'price': request.form.get('price'),
         'description': request.form.get('description')
     }
     fabric_id = fabrics.insert_one(fabric).inserted_id

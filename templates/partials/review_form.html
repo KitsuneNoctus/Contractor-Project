@@ -1,0 +1,36 @@
+<!-- templates/partials/review_form.html -->
+
+<!-- <form action='/playlists/comments' method='POST'>
+    <input type='hidden' value='{{ playlist._id }}' name='playlist_id'/>
+    <fieldset> -->
+
+<form>
+    <fieldset>
+        <legend>Add a Review</legend>
+        <!-- TITLE -->
+        <div class='form-group'>
+            <label for='review-title'>Title</label><br>
+            <input class='form-control'
+                id='review-title'
+                type='text'
+                name='title'
+                placeholder='Title'/>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class='form-group'>
+            <label for='review-content'>Description</label><br>
+            <textarea class='form-control'
+                id='review-content'
+                name='content'
+                rows='10'
+                placeholder='Your review...'/></textarea>
+        </div>
+    </fieldset>
+    <!-- Insert a rating place here-->
+
+    <!-- BUTTON -->
+    <div class='form-group'>
+        <button class='btn btn-primary' type='submit'>Save Review</button>
+    </div>
+</form>
