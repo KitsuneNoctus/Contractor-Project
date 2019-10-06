@@ -1,5 +1,18 @@
 <!-- templates/home_index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello!</h1>
+<h1>Fabrics</h1>
+<div class='row'>
+    {% for fabric in fabrics %}
+        <div class='col-md-3'>
+            <div class="card">
+                <div class="card-body">
+                    <h2><a href='/fabrics/{{ fabric._id }}'>{{ fabric.tname }}</a></h2>
+                    <small>{{ fabric.description }}</small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
