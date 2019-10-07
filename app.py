@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 import os
 
 client = MongoClient()
-#
+#db = client.get_default_database()
 db = client.Fabrics
 fabrics = db.fabrics
 
@@ -19,7 +19,7 @@ def index():
 @app.route('/fabrics/new')
 def playlists_new():
     """Create a new playlist."""
-    return render_template('playlists_new.html', playlist={}, title='New Fabric')
+    return render_template('fabrics_new.html', fabric={}, name='New Fabric')
 
 #CREATE -------------------------------------------------------
 @app.route('/fabrics', methods=['POST'])
@@ -29,7 +29,7 @@ def fabrics_submit():
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'price': request.form.get('price'),
-        'description': request.form.get('description')
+        'source': request.form.get('source')
     }
     fabric_id = fabrics.insert_one(fabric).inserted_id
     return redirect(url_for('fabrics_show', fabric_id=fabric_id))
