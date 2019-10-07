@@ -7,5 +7,10 @@
     <h2>{{ fabric.description }}</h2>
     <h3>{{ fabric.price }}</h3>
     <small>{{ fabric.source }}</small>
+
+    <p><form method='POST' action='/fabrics/{{ fabric._id }}/delete'>
+            <input type='hidden' name='_method' value='DELETE'>
+            <button class='btn btn-primary' type='submit'>Delete</button>
+        </form></p>
 </div>
 {% endblock %}

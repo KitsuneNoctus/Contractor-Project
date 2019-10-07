@@ -17,7 +17,7 @@ def index():
     return render_template('home_index.html', fabrics=fabrics.find())
 
 @app.route('/fabrics/new')
-def playlists_new():
+def fabrics_new():
     """Create a new playlist."""
     return render_template('fabrics_new.html', fabric={}, name='New Fabric')
 
@@ -42,7 +42,12 @@ def fabrics_show(fabric_id):
     return render_template('fabrics_show.html', fabric=fabric)
     pass
 #UPDATE -------------------------------------------------------
-#DESTROY ------------------------------------------------------
+#DESTROY / Delete ---------------------------------------------
+@app.route('/fabrics/<fabric_id>/delete', methods=['POST'])
+def fabrics_delete(fabric_id):
+    """Delete one fabric listing."""
+    fabrics.delete_one({'_id': ObjectId(fabric_id)})
+    return redirect(url_for('index'))
 
 if __name__=='__main__':
     app.run(debug=True)
