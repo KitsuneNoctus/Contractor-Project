@@ -16,6 +16,11 @@ def index():
     """Homepage"""
     return render_template('home_index.html', fabrics=fabrics.find())
 
+@app.route('/fabrics/new')
+def playlists_new():
+    """Create a new playlist."""
+    return render_template('playlists_new.html', playlist={}, title='New Fabric')
+
 #CREATE -------------------------------------------------------
 @app.route('/fabrics', methods=['POST'])
 def fabrics_submit():

@@ -2,4 +2,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <a href='/'>Back to Home</a>
+<div>
+    <h1>{{ fabric.name }}</h1>
+    <h2>{{ fabric.description }}</h2>
+    <h3>{{ fabric.price }}</h3>
+    <small>{{ fabric.source }}</small>
+</div>
 {% endblock %}
