@@ -4,9 +4,10 @@ from flask import Flask, render_template, request, redirect, url_for
 from bson.objectid import ObjectId
 import os
 
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Fabric')
 client = MongoClient()
-#db = client.get_default_database()
-db = client.Fabrics
+db = client.get_default_database()
+# db = client.Fabrics
 fabrics = db.fabrics
 reviews = db.reviews
 
