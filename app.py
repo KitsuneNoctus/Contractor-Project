@@ -31,7 +31,8 @@ def fabrics_submit():
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'price': request.form.get('price'),
-        'source': request.form.get('source')
+        'source': request.form.get('source'),
+        'image_url': request.form.get('image')
     }
     fabric_id = fabrics.insert_one(fabric).inserted_id
     return redirect(url_for('fabrics_show', fabric_id=fabric_id))
@@ -57,7 +58,8 @@ def fabrics_update(fabric_id):
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'price': request.form.get('price'),
-        'source': request.form.get('source')
+        'source': request.form.get('source'),
+        'image_url': request.form.get('image')
     }
     fabrics.update_one(
         {'_id': ObjectId(fabric_id)},
