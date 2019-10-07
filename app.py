@@ -40,7 +40,8 @@ def fabrics_submit():
 def fabrics_show(fabric_id):
     """Show single fabric item"""
     fabric = fabrics.find_one({'_id': ObjectId(fabric_id)})
-    return render_template('fabrics_show.html', fabric=fabric)
+    fabric_review = reviews.find({'fabric_id': ObjectId(fabric_id)})
+    return render_template('fabrics_show.html', fabric=fabric, reviews=fabric_review)
     pass
 #UPDATE -------------------------------------------------------
 @app.route('/fabrics/<fabric_id>/edit')
@@ -69,24 +70,24 @@ def fabrics_delete(fabric_id):
     return redirect(url_for('index'))
 
 #====================Review==================
-# @app.route('/fabrics/reviews', methods=['POST'])
-# def comments_new():
-#     """Submit a new review."""
-#     review = {
-#         'title': request.form.get('title'),
-#         'content': request.form.get('content'),
-#         'review_id': ObjectId(request.form.get('review_id'))
-#     }
-#     print(review)
-#     review_id = reviews.insert_one(comment).inserted_id
-#     return redirect(url_for('playlists_show', playlist_id=request.form.get('playlist_id')))
-# #Delete a Comment ----------------------------------------
-# @app.route('/playlists/comments/<comment_id>', methods=['POST'])
-# def comments_delete(comment_id):
-#     """Action to delete a comment."""
-#     comment = comments.find_one({'_id': ObjectId(comment_id)})
-#     comments.delete_one({'_id': ObjectId(comment_id)})
-#     return redirect(url_for('playlists_show', playlist_id=comment.get('playlist_id')))
+@app.route('/fabrics/reviews', methods=['POST'])
+def reviews_new():
+    """Submit a new review."""
+    review = {
+        'title': request.form.get('title'),
+        'content': request.form.get('content'),
+        'review_id': ObjectId(request.form.get('review_id'))
+    }
+    print(review)
+    review_id = reviews.insert_one(review).inserted_id
+    return redirect(url_for('fabrics_show', fabric_id=request.form.get('fabric_id')))
+#Delete a Review ----------------------------------------
+@app.route('/fabrics/reviews/<review_id>', methods=['POST'])
+def reviews_delete(review_id):
+    """Action to delete a comment."""
+    review = reviews.find_one({'_id': ObjectId(review_id)})
+    reviews.delete_one({'_id': ObjectId(review_id)})
+    return redirect(url_for('fabrics_show', fabric_id=review.get('fabric_id')))
 
 if __name__=='__main__':
     app.run(debug=True)

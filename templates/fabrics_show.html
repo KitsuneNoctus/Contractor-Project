@@ -17,5 +17,11 @@
     <p><form method='POST' action='/fabrics/{{ fabric._id }}/delete'>
             <button class='btn btn-primary' type='submit'>Delete</button>
         </form></p>
+
+    {% include 'partials/review_form.html' %}
+    <hr>
+    {% for review in reviews %}
+        {% include 'partials/review.html' %}
+    {% endfor %}
 </div>
 {% endblock %}
