@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 import os
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Fabric')
-client = MongoClient()
+client = MongoClient(host=host)
 db = client.get_default_database()
 # db = client.Fabrics
 fabrics = db.fabrics
@@ -91,4 +91,4 @@ def reviews_delete(review_id):
     return redirect(url_for('fabrics_show', fabric_id=review.get('fabric_id')))
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
