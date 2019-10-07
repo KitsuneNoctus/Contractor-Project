@@ -8,6 +8,7 @@ client = MongoClient()
 #db = client.get_default_database()
 db = client.Fabrics
 fabrics = db.fabrics
+reviews = db.reviews
 
 app = Flask(__name__)
 
@@ -66,6 +67,26 @@ def fabrics_delete(fabric_id):
     """Delete one fabric listing."""
     fabrics.delete_one({'_id': ObjectId(fabric_id)})
     return redirect(url_for('index'))
+
+#====================Review==================
+# @app.route('/fabrics/reviews', methods=['POST'])
+# def comments_new():
+#     """Submit a new review."""
+#     review = {
+#         'title': request.form.get('title'),
+#         'content': request.form.get('content'),
+#         'review_id': ObjectId(request.form.get('review_id'))
+#     }
+#     print(review)
+#     review_id = reviews.insert_one(comment).inserted_id
+#     return redirect(url_for('playlists_show', playlist_id=request.form.get('playlist_id')))
+# #Delete a Comment ----------------------------------------
+# @app.route('/playlists/comments/<comment_id>', methods=['POST'])
+# def comments_delete(comment_id):
+#     """Action to delete a comment."""
+#     comment = comments.find_one({'_id': ObjectId(comment_id)})
+#     comments.delete_one({'_id': ObjectId(comment_id)})
+#     return redirect(url_for('playlists_show', playlist_id=comment.get('playlist_id')))
 
 if __name__=='__main__':
     app.run(debug=True)
