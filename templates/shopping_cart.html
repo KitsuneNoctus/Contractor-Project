@@ -2,17 +2,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- <script>
-    function myFunction() {
-      var total = 0;
-      document.getElementById("myText").innerHTML = number;
-    }
-  </script> -->
+{% set total = 0 %}
+
 
 <h1>Shopping Cart</h1>
 <div>
-    <!-- var total = 0 -->
+
     {% for item in shopping_cart %}
+    {% set total = total + 1 %}
     <div>
         <img src='{{item.image_url}}' height = 100px width = 100px>
         <h1>{{ item.name }}</h1>
@@ -23,10 +20,12 @@
                 <button class='btn btn-primary' type='submit'>Remove</button>
             </form></p>
 
-        <!-- var total += {{ item.price }} -->
+
     </div>
     {% endfor %}
     <br>
-    <!-- <p>Total price: $<span id="myText"></span></p> -->
+    <p>Total Price: ${{ total }}</p>
+
+
 </div>
 {% endblock %}
