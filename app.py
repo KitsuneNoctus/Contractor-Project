@@ -80,7 +80,7 @@ def reviews_new():
     review = {
         'title': request.form.get('title'),
         'content': request.form.get('content'),
-        'review_id': ObjectId(request.form.get('review_id'))
+        'fabric_id': ObjectId(request.form.get('fabric_id'))
     }
     print(review)
     review_id = reviews.insert_one(review).inserted_id
