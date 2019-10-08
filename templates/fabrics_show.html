@@ -1,7 +1,7 @@
 <!-- templates/fabrics_show.html -->
 {% extends 'base.html' %}
 {% block content %}
-<a href='/'>Back to Home</a>
+
 <div>
     <img src='{{fabric.image_url}}' height = auto width = auto>
     <h1>{{ fabric.name }}</h1>
@@ -19,8 +19,15 @@
             <button class='btn btn-primary' type='submit'>Delete</button>
         </form></p>
 
+    <p><form method='POST' action='/shopping_cart/add_item'>
+            <button class='btn btn-primary' type='submit'>Add to Cart</button>
+        </form></p>
+
+        <hr>
+
     {% include 'partials/review_form.html' %}
     <hr>
+
     {% for review in reviews %}
         {% include 'partials/review.html' %}
     {% endfor %}

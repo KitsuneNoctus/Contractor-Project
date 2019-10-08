@@ -10,6 +10,7 @@ db = client.get_default_database()
 # db = client.Fabrics
 fabrics = db.fabrics
 reviews = db.reviews
+shopping_cart = db.shopping_cart
 
 app = Flask(__name__)
 
@@ -91,6 +92,20 @@ def reviews_delete(review_id):
     review = reviews.find_one({'_id': ObjectId(review_id)})
     reviews.delete_one({'_id': ObjectId(review_id)})
     return redirect(url_for('fabrics_show', fabric_id=review.get('fabric_id')))
+
+#===============Shoppping Cart=======================
+#READ------------------------
+@app.route('/shopping_cart')
+def shopping_cart_show():
+    """Will show entire shopping cart"""
+    return render_template('shopping_cart.html', shopping_cart=shopping_cart.find())
+    pass
+
+# @app.route('/shopping_cart/add_item', methods=['POST'])
+# def shopping_cart_add(fabric_id):
+#     return render_template('shopping_cart.html')
+#     pass
+
 
 if __name__=='__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
