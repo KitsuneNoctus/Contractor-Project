@@ -100,14 +100,18 @@ def shopping_cart_show():
     """Will show entire shopping cart"""
     return render_template('shopping_cart.html', shopping_cart=shopping_cart.find())
     pass
-
+#Create item list to use ------------------
 @app.route('/shopping_cart/<fabric_id>/add_item', methods=['POST'])
 def shopping_cart_add(fabric_id):
     new_item = fabrics.find_one({'_id': ObjectId(fabric_id)})
     item_id = shopping_cart.insert_one(new_item)
     return redirect(url_for('index'))
-    pass
 
+#Remove the item -------------
+@app.route('/shopping_cart/<item_id>/remove', methods=['POST'])
+def shopping_cart_remove(item_id):
+    shopping_cart.delete_one({'_id': ObjectId(item_id)})
+    return redirect(url_for('shopping_cart_show'))
 
 if __name__=='__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
