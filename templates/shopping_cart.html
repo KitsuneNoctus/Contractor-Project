@@ -13,7 +13,7 @@
     <div>
         <img src='{{item.image_url}}' height = 100px width = 100px>
         <h1>{{ item.name }}</h1>
-        <h3>{{ item.price }}</h3>
+        <h3>${{ item.price }} /yd</h3>
         <small>{{ item.source }}</small>
 
         <p><form method='POST' action='/shopping_cart/{{ item._id }}/remove'>
