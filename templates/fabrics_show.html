@@ -19,8 +19,8 @@
             <button class='btn btn-primary' type='submit'>Delete</button>
         </form></p>
 
-    <p><form method='POST' action='/shopping_cart/add_item'>
-            <input type='hidden' value='{{ fabric._id }}' name='fabric_id'/>
+    <p><form method='POST' action='/shopping_cart/{{ fabric._id }}/add_item'>
+            <!-- <input type='hidden' value='{{ fabric._id }}' name='fabric_id'/> -->
             <button class='btn btn-primary' type='submit'>Add to Cart</button>
         </form></p>
 

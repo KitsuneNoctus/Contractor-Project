@@ -2,14 +2,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script>
+    function myFunction() {
+      var total = 0;
+      document.getElementById("myText").innerHTML = number;
+    }
+  </script>
+
 <h1>Shopping Cart</h1>
 <div>
-    
+    var total = 0
     {% for item in shopping_cart %}
-
-
-
+    <div>
+        <img src='{{item.image_url}}' height = auto width = auto>
+        <h1>{{ item.name }}</h1>
+        <h3>{{ item.price }}</h3>
+        <small>{{ item.source }}</small>
+        var total += {{ item.price }}
+    </div>
     {% endfor %}
-
+    <br>
+    <p>Total price: $<span id="myText"></span></p>
 </div>
 {% endblock %}

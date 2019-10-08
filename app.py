@@ -101,8 +101,10 @@ def shopping_cart_show():
     return render_template('shopping_cart.html', shopping_cart=shopping_cart.find())
     pass
 
-@app.route('/shopping_cart/add_item', methods=['POST'])
+@app.route('/shopping_cart/<fabric_id>/add_item', methods=['POST'])
 def shopping_cart_add(fabric_id):
+    new_item = fabrics.find_one({'_id': ObjectId(fabric_id)})
+    item_id = shopping_cart.insert_one(new_item)
     return redirect(url_for('index'))
     pass
 
