@@ -101,10 +101,10 @@ def shopping_cart_show():
     return render_template('shopping_cart.html', shopping_cart=shopping_cart.find())
     pass
 
-# @app.route('/shopping_cart/add_item', methods=['POST'])
-# def shopping_cart_add(fabric_id):
-#     return render_template('shopping_cart.html')
-#     pass
+@app.route('/shopping_cart/add_item', methods=['POST'])
+def shopping_cart_add(fabric_id):
+    return redirect(url_for('index'))
+    pass
 
 
 if __name__=='__main__':
