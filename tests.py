@@ -31,7 +31,8 @@ class FabricsTests(TestCase):
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
         self.assertIn(b'Fabric', result.data)
-# ========================================================
+
+# -------------------------------------------------------
     def test_new(self):
         """Test the new fabric creation page."""
         result = self.client.get('/fabrics/new')
@@ -77,6 +78,24 @@ class FabricsTests(TestCase):
         result = self.client.post(f'/fabrics/{sample_fabric_id}/delete', data=form_data)
         self.assertEqual(result.status, '302 FOUND')
         mock_delete.assert_called_with({'_id': sample_fabric_id})
+
+
+#=========================================
+    def test_shopping_cart(self):
+        """Test the Fabrics shopping cart."""
+        result = self.client.get('/shopping_cart')
+        self.assertEqual(result.status, '200 OK')
+        self.assertIn(b'Fabric', result.data)
+
+    # def test_new_item(self):
+    #     """Test adding to shopping cart."""
+    #     result = self.client.get('/shopping_cart/<fabric_id>/add_item')
+    #     self.assertEqual(result.status, '200 OK')
+
+
+
+        # self.assertEqual(result.status, '302 FOUND')
+        # mock_insert.assert_called_with(sample_fabric)
 
 
 
