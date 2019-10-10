@@ -18,10 +18,12 @@
         <h1>{{ item.name }}</h1>
         <h3>${{ item.price }} /yd</h3>
         <small>{{ item.source }}</small>
+        <br>
+        <small>Qauntity: {{ item.quantity }}</small>
 
         <!-- https://stackoverflow.com/questions/39938323/jinja-convert-string-to-integer?rq=1 -->
         {% set number = item.source | int %}
-        
+
         {% set total = total + number  %}
 
 

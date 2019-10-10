@@ -103,8 +103,14 @@ def shopping_cart_show():
 #Create item list to use ------------------
 @app.route('/shopping_cart/<fabric_id>/add_item', methods=['POST'])
 def shopping_cart_add(fabric_id):
-    new_item = fabrics.find_one({'_id': ObjectId(fabric_id)})
-    item_id = shopping_cart.insert_one(new_item)
+    #Kevins help/code here
+    if shopping_cart.find_one({'_id': ObjectId(fabric_id)}):
+        shopping_cart.update_one(
+            {'_id': ObjectId(fabric_id)},
+            {'$inc':{'quantity':1}}
+        )
+    else:
+        shopping_cart.insert_one({**fabrics.find_one({'_id': ObjectId(fabric_id) }), **{'quantity':1} })
     return redirect(url_for('index'))
 
 #Remove the item -------------
