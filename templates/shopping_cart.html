@@ -2,6 +2,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- <script type="text/javascript">
+    var total = 0;
+  </script> -->
 {% set total = 0 %}
 
 
@@ -9,12 +12,18 @@
 <div>
 
     {% for item in shopping_cart %}
-    
+
     <div>
         <img src='{{item.image_url}}' height = 100px width = 100px>
         <h1>{{ item.name }}</h1>
         <h3>${{ item.price }} /yd</h3>
         <small>{{ item.source }}</small>
+
+        <!-- https://stackoverflow.com/questions/39938323/jinja-convert-string-to-integer?rq=1 -->
+        {% set number = item.source | int %}
+        {{number}}
+        {% set total = total + number  %}
+
 
         <p><form method='POST' action='/shopping_cart/{{ item._id }}/remove'>
                 <button class='btn btn-primary' type='submit'>Remove</button>
@@ -24,7 +33,9 @@
     </div>
     {% endfor %}
     <br>
-    <p>Total Price: ${{ total }}</p>
+    <p>Total Price: $</p>
+    {{ total }}
+
 
 
 </div>
