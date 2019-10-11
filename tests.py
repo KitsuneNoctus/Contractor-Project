@@ -18,6 +18,15 @@ sample_form_data = {
     'image':sample_fabric['image_url']
 }
 
+sample_shopping_cart_item = {
+    'name': sample_fabric['name'],
+    'description': sample_fabric['description'],
+    'price':sample_fabric['price'],
+    'source':sample_fabric['source'],
+    'image':sample_fabric['image_url'],
+    'quantity':sample_fabric['quantity']
+}
+
 class FabricsTests(TestCase):
     """Flask tests."""
 
@@ -73,7 +82,7 @@ class FabricsTests(TestCase):
         mock_update.assert_called_with({'_id': sample_fabric_id}, {'$set': sample_fabric})
 
     @mock.patch('pymongo.collection.Collection.delete_one')
-    def test_delete_playlist(self, mock_delete):
+    def test_delete_fabric(self, mock_delete):
         form_data = {'_method': 'DELETE'}
         result = self.client.post(f'/fabrics/{sample_fabric_id}/delete', data=form_data)
         self.assertEqual(result.status, '302 FOUND')
