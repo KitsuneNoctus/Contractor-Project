@@ -23,8 +23,8 @@ sample_shopping_cart_item = {
     'description': sample_fabric['description'],
     'price':sample_fabric['price'],
     'source':sample_fabric['source'],
-    'image':sample_fabric['image_url'],
-    'quantity':sample_fabric['quantity']
+    'image':sample_fabric['image_url']
+
 }
 
 class FabricsTests(TestCase):
