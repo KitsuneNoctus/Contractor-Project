@@ -49,7 +49,7 @@ class FabricsTests(TestCase):
         self.assertIn(b'New Fabric', result.data)
 
     @mock.patch('pymongo.collection.Collection.find_one')
-    def test_show_playlist(self, mock_find):
+    def test_show_fabric(self, mock_find):
         """Test showing a single fabric."""
         mock_find.return_value = sample_fabric
 
@@ -58,7 +58,7 @@ class FabricsTests(TestCase):
         self.assertIn(b'Silk', result.data)
 
     @mock.patch('pymongo.collection.Collection.find_one')
-    def test_edit_playlist(self, mock_find):
+    def test_edit_fabric(self, mock_find):
         """Test editing a single fabric."""
         mock_find.return_value = sample_fabric
 
@@ -67,7 +67,7 @@ class FabricsTests(TestCase):
         self.assertIn(b'Silk', result.data)
 
     @mock.patch('pymongo.collection.Collection.insert_one')
-    def test_submit_playlist(self, mock_insert):
+    def test_submit_fabric(self, mock_insert):
         """Test submitting a new fabric."""
         result = self.client.post('/fabrics', data=sample_form_data)
 
@@ -75,7 +75,7 @@ class FabricsTests(TestCase):
         mock_insert.assert_called_with(sample_fabric)
 
     @mock.patch('pymongo.collection.Collection.update_one')
-    def test_update_playlist(self, mock_update):
+    def test_update_fabric(self, mock_update):
         result = self.client.post(f'/fabrics/{sample_fabric_id}', data=sample_form_data)
 
         self.assertEqual(result.status, '302 FOUND')
